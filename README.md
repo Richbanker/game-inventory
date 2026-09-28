@@ -1,5 +1,8 @@
 # 🎮 Инвентарь - Современная система управления
 
+
+[![Просмотры README](https://vbr.nathanchung.dev/badge?page_id=Richbanker.game-inventory&text=README_Views)](https://github.com/Richbanker/game-inventory)
+
 Мини-приложение на React + TypeScript + Zustand + Tailwind с красивым современным UI, реализующее игровую логику инвентаря.
 
 ![Современный дизайн в стиле Glassmorphism с анимациями и градиентами]
