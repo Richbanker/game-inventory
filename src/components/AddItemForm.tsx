@@ -5,6 +5,7 @@ import { seedItems } from '../demo/seed'
 
 export const AddItemForm: React.FC = () => {
   const [id, setId] = useState('')
+  const [selectedItemId, setSelectedItemId] = useState('')
   const [sku, setSku] = useState('')
   const [title, setTitle] = useState('')
   const [image, setImage] = useState('')
@@ -13,6 +14,7 @@ export const AddItemForm: React.FC = () => {
   const { handleAddItem } = useInventory()
 
   const handleItemSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setSelectedItemId(e.target.value)
     const selectedItem = seedItems.find(item => item.id === e.target.value)
     if (selectedItem) {
       setId(selectedItem.id)
@@ -29,6 +31,7 @@ export const AddItemForm: React.FC = () => {
     if (!id || !sku || !title || !image || weight <= 0 || qty <= 0) return
     const item: InventoryItem = { id, sku, title, image, weight, qty }
     handleAddItem(item)
+    setSelectedItemId('')
     setId(''); setSku(''); setTitle(''); setImage(''); setWeight(0); setQty(1)
   }
 
@@ -43,7 +46,7 @@ export const AddItemForm: React.FC = () => {
           <select 
             className="modern-input w-full" 
             onChange={handleItemSelect}
-            defaultValue=""
+            value={selectedItemId}
           >
             <option value="">Выберите предмет...</option>
             {seedItems.map(item => (
