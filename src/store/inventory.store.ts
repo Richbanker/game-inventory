@@ -30,6 +30,7 @@ const calculateStats = (items: InventoryItem[]): InventoryStats => {
 
 const findSimilarItem = (items: InventoryItem[], newItem: Omit<InventoryItem, 'qty' | 'sku' | 'id'> & { sku: string; id: string; qty: number }) => {
   return items.findIndex(item => 
+    item.sku === newItem.sku &&
     item.title === newItem.title && 
     item.weight === newItem.weight && 
     item.image === newItem.image
