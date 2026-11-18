@@ -124,7 +124,7 @@ export const AddItemForm: React.FC = () => {
               required
             />
             {(!Number.isInteger(qty) || qty < 1) && (
-              <p className="text-red-500 text-sm mt-1">Количество должно быть не менее 1</p>
+              <p className="text-red-500 text-sm mt-1">Количество должно быть целым числом не менее 1</p>
             )}
           </div>
         </div>
