@@ -28,14 +28,14 @@ export const AddItemForm: React.FC = () => {
 
   const onAdd = (e: React.FormEvent) => {
     e.preventDefault()
-    if (!id || !sku || !title || !image || weight <= 0 || qty <= 0) return
+    if (!id || !sku || !title || !image || weight <= 0 || !Number.isInteger(qty) || qty < 1) return
     const item: InventoryItem = { id, sku, title, image, weight, qty }
     handleAddItem(item)
     setSelectedItemId('')
     setId(''); setSku(''); setTitle(''); setImage(''); setWeight(0); setQty(1)
   }
 
-  const isValid = id.trim() !== '' && sku.trim() !== '' && title.trim() !== '' && image.trim() !== '' && weight > 0 && qty >= 1
+  const isValid = id.trim() !== '' && sku.trim() !== '' && title.trim() !== '' && image.trim() !== '' && weight > 0 && Number.isInteger(qty) && qty >= 1
 
   return (
     <div className="modern-card p-6">
@@ -123,7 +123,7 @@ export const AddItemForm: React.FC = () => {
               onChange={e => setQty(Number(e.target.value))} 
               required
             />
-            {qty < 1 && qty !== 0 && (
+            {(!Number.isInteger(qty) || qty < 1) && (
               <p className="text-red-500 text-sm mt-1">Количество должно быть не менее 1</p>
             )}
           </div>
