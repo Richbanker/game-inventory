@@ -79,7 +79,15 @@ export const InventoryStats: React.FC<InventoryStatsProps> = ({ stats }) => {
             {Math.min(100, Math.round((stats.totalWeight / 100) * 100))}%
           </span>
         </div>
-        <div className="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
+        <div
+          className="w-full bg-gray-200 rounded-full h-3 overflow-hidden"
+          role="progressbar"
+          aria-label="Загрузка инвентаря"
+          aria-valuemin={0}
+          aria-valuemax={100}
+          aria-valuenow={Math.max(0, Math.min(100, Math.round(stats.totalWeight)))}
+          aria-valuetext={`${stats.totalWeight.toFixed(1)} из 100 кг`}
+        >
           <div 
             className="h-full bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full transition-all duration-1000 ease-out"
             style={{ width: `${Math.min(100, Math.round((stats.totalWeight / 100) * 100))}%` }}
