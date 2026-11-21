@@ -9,28 +9,25 @@ interface InventoryCardProps {
 }
 
 export const InventoryCard: React.FC<InventoryCardProps> = React.memo(({ item, onIncrease, onDecrease, onRemove }) => {
+  const [failedImage, setFailedImage] = React.useState<string | null>(null)
+
   return (
     <div className="item-card fade-in-up">
       <div className="flex flex-col md:flex-row md:items-center space-y-4 md:space-y-0 md:space-x-4">
         <div className="flex justify-center md:justify-start">
           <div className="item-image flex items-center justify-center">
-            <img 
-              src={item.image} 
-              alt={item.title} 
-              className="w-full h-full object-contain"
-              onError={(e) => {
-                const target = e.target as HTMLImageElement
-                target.style.display = 'none'
-                const parent = target.parentElement
-                if (parent) {
-                  parent.innerHTML = `
-                    <div class="w-full h-full flex items-center justify-center text-gray-400 text-xs font-medium">
-                      ${item.title.charAt(0).toUpperCase()}
-                    </div>
-                  `
-                }
-              }}
-            />
+            {failedImage === item.image ? (
+              <div className="w-full h-full flex items-center justify-center text-gray-400 text-xs font-medium" aria-label={item.title}>
+                {item.title.charAt(0).toUpperCase()}
+              </div>
+            ) : (
+              <img
+                src={item.image}
+                alt={item.title}
+                className="w-full h-full object-contain"
+                onError={() => setFailedImage(item.image)}
+              />
+            )}
           </div>
         </div>
         <div className="flex-1 min-w-0 text-center md:text-left">
