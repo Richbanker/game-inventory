@@ -1,6 +1,7 @@
 import React from 'react'
 import { InventoryItem } from '../types/item'
 import { InventoryCard } from './InventoryCard'
+import { formatWeight } from '../utils/formatters'
 
 interface InventoryListProps {
   items: InventoryItem[]
@@ -43,7 +44,7 @@ export const InventoryList: React.FC<InventoryListProps> = ({ items, onIncrease,
       <div className="border-t pt-4 mt-6">
         <div className="flex justify-between items-center text-lg font-semibold text-gray-800">
           <span>Итого:</span>
-          <span>{totalItems} шт., {totalWeight.toFixed(1)} кг</span>
+          <span>{totalItems} шт., {formatWeight(totalWeight)}</span>
         </div>
       </div>
     </div>
