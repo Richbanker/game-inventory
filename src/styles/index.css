@@ -426,3 +426,23 @@ select.modern-input {
   border-color: #10b981;
   box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
 }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+
+  .modern-card:hover,
+  .modern-input:focus,
+  .modern-input:hover,
+  .modern-button:hover,
+  .modern-button:active,
+  .action-button:hover,
+  .quantity-button:hover,
+  .item-card:hover,
+  .item-card:hover .item-image {
+    transform: none;
+  }
+}
